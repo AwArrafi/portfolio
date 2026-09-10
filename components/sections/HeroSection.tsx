@@ -2,7 +2,10 @@ import { heroSkills } from "@/data/hero";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[#f6f9ff] px-6 pb-20 pt-32 text-slate-900 transition-colors duration-300 dark:bg-[#07111f] dark:text-[#dae2fd] md:px-10 lg:px-16 lg:pt-40">
+    <section
+      id="home"
+      className="relative overflow-hidden bg-[#f6f9ff] px-6 pb-20 pt-32 text-slate-900 transition-colors duration-300 dark:bg-[#07111f] dark:text-[#dae2fd] md:px-10 lg:px-16 lg:pt-40"
+    >
       {/* Background Glow */}
       <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-300/25 blur-3xl dark:bg-cyan-400/10" />
       <div className="absolute right-10 top-40 h-64 w-64 rounded-full bg-blue-300/20 blur-3xl dark:bg-blue-400/10" />
