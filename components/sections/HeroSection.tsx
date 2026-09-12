@@ -55,6 +55,16 @@ export default function HeroSection() {
             >
               Download Resume
             </a>
+
+            <a
+              href="https://bit.ly/Awang-Portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-4 font-bold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-600 dark:border-white/10 dark:bg-slate-800/50 dark:text-[#dae2fd] dark:hover:border-cyan-300/30 dark:hover:text-cyan-300"
+            >
+              View Other Portfolio
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
 
           {/* Skills */}
