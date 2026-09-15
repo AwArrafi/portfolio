@@ -20,6 +20,6 @@ export const socialLinks = [
   {
     id: 3,
     label: "Resume",
-    href: "/resume/Awang-Arrafi-CV.pdf",
+    href: "/resume/Cv-Arrafi.pdf",
   },
 ];

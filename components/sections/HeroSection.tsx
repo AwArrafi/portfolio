@@ -49,8 +49,8 @@ export default function HeroSection() {
             </a>
 
             <a
-              href="/resume/Awang-Arrafi-CV.pdf"
-              download="Awang-Arrafi-CV.pdf"
+              href="/resume/CV-Arrafi.pdf"
+              download="CV-Arrafi.pdf"
               className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-7 py-3 text-base font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-slate-800/50 dark:text-[#dae2fd] dark:hover:border-cyan-300/40 dark:hover:text-cyan-300"
             >
               Download Resume
