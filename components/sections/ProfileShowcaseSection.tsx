@@ -67,7 +67,7 @@ export default function ProfileShowcaseSection() {
                 </p>
 
                 <p className="mt-1 text-sm font-bold leading-5 text-slate-900 dark:text-[#dae2fd]">
-                  AI is my Bestfriend
+                  Building Dreams.
                 </p>
               </div>
             </div>
