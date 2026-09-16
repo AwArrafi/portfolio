@@ -20,6 +20,6 @@ export const socialLinks = [
   {
     id: 3,
     label: "Resume",
-    href: "/resume/Cv-Arrafi.pdf",
+    href: "/resume/CV-Arrafi.pdf",
   },
 ];
