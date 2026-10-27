@@ -48,11 +48,25 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
   const toggleTheme = () => {
     const nextTheme: Theme = theme === "light" ? "dark" : "light";
 
+    // Set the next theme immediately.
     localStorage.setItem("theme", nextTheme);
 
     document.documentElement.classList.toggle("dark", nextTheme === "dark");
 
+    // Trigger the background reveal animation.
+    document.documentElement.classList.remove("theme-reveal");
+
+    // Force a reflow so the animation can restart every click.
+    void document.documentElement.offsetWidth;
+
+    document.documentElement.classList.add("theme-reveal");
+
     window.dispatchEvent(new Event("theme-change"));
+
+    // Remove animation class after animation finishes.
+    window.setTimeout(() => {
+      document.documentElement.classList.remove("theme-reveal");
+    }, 700);
   };
 
   return (

@@ -24,3 +24,48 @@ body {
 .font-code {
   font-family: var(--font-jetbrains-mono), monospace;
 }
+
+/* Theme Background Reveal */
+.theme-reveal::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: var(--theme-reveal-bg);
+
+  clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
+
+  animation: theme-reveal 650ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+:root {
+  --theme-reveal-bg: #f6f9ff;
+}
+
+.dark {
+  --theme-reveal-bg: #07111f;
+}
+
+@keyframes theme-reveal {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
+  }
+
+  20% {
+    clip-path: polygon(0 0, 0 100%, 22% 100%, 14% 0);
+  }
+
+  45% {
+    clip-path: polygon(0 0, 0 100%, 52% 100%, 43% 0);
+  }
+
+  70% {
+    clip-path: polygon(0 0, 0 100%, 78% 100%, 69% 0);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  }
+}

@@ -12,7 +12,7 @@ const navItems = [
 
 export default function Navbar() {
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-[#07111f]/80">
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200/80 bg-[#f6f9ff] dark:border-white/5 dark:bg-[#07111f]">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:px-10 lg:px-16">
         {/* Logo */}
         <a

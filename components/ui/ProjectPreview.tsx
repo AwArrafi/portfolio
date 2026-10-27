@@ -34,6 +34,7 @@ export default function ProjectPreview({ project }: ProjectPreviewProps) {
             src={project.image}
             alt={project.imageAlt}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             className="object-contain"
           />
         </div>
@@ -47,6 +48,7 @@ export default function ProjectPreview({ project }: ProjectPreviewProps) {
         src={project.image}
         alt={project.imageAlt}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         className="object-cover object-top transition duration-500 group-hover:scale-105"
       />
 
