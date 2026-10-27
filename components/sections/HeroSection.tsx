@@ -15,8 +15,6 @@ export default function HeroSection() {
       {/* Background Glow */}
       <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-300/25 blur-3xl dark:bg-cyan-400/10" />
 
-      <div className="absolute right-10 top-40 h-64 w-64 rounded-full bg-blue-300/20 blur-3xl dark:bg-blue-400/10" />
-
       <div className="absolute -left-20 bottom-10 h-72 w-72 rounded-full bg-violet-300/15 blur-3xl dark:bg-violet-400/10" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
@@ -24,11 +22,10 @@ export default function HeroSection() {
           {/* Profile */}
           <div className="mb-8 flex items-center gap-5">
             {/* Profile Image */}
-            {/* Profile Image */}
             <button
               type="button"
               onClick={() => setIsProfessional((prev) => !prev)}
-              className="group relative h-40 w-40 shrink-0 overflow-hidden rounded-full border-4 border-slate-900 bg-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-slate-900/20 dark:border-slate-700 dark:bg-white dark:hover:border-slate-600"
+              className="group relative h-28 w-28 shrink-0 overflow-hidden rounded-full bg-white shadow-xl ring-2 ring-cyan-400/70 ring-offset-4 ring-offset-[#f6f9ff] transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:ring-cyan-500 focus:outline-none focus-visible:ring-4 dark:ring-cyan-300/60 dark:ring-offset-[#07111f] sm:h-32 sm:w-32"
               aria-label={
                 isProfessional
                   ? "Switch to anime profile picture"
@@ -37,7 +34,7 @@ export default function HeroSection() {
             >
               {/* Anime Profile */}
               <Image
-                src="/Images/profile-manga.jpg"
+                src="/images/profile-manga.jpg"
                 alt="Anime profile picture"
                 fill
                 className={`object-cover transition-all duration-700 ease-in-out ${
@@ -45,12 +42,12 @@ export default function HeroSection() {
                     ? "scale-105 opacity-0"
                     : "scale-100 opacity-100"
                 }`}
-                sizes="160px"
+                sizes="128px"
               />
 
               {/* Professional Profile */}
               <Image
-                src="/Images/profile-professional.png"
+                src="/images/profile-professional.png"
                 alt="Professional profile picture"
                 fill
                 priority
@@ -59,7 +56,7 @@ export default function HeroSection() {
                     ? "scale-100 opacity-100"
                     : "scale-105 opacity-0"
                 }`}
-                sizes="160px"
+                sizes="128px"
               />
 
               {/* Hover Overlay */}
@@ -141,6 +138,14 @@ export default function HeroSection() {
                   </svg>
                 </a>
               </div>
+
+              <span className="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-300">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 motion-safe:animate-ping" />
+                  <span className="relative h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
+                Available for work
+              </span>
             </div>
           </div>
 
@@ -161,7 +166,7 @@ export default function HeroSection() {
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <a
               href="#projects"
-              className="inline-flex items-center justify-center rounded-xl bg-slate-950 px-7 py-3 text-base font-bold text-white shadow-[0_16px_35px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-[#8aebff] dark:text-[#00363e] dark:shadow-[0_16px_35px_rgba(138,235,255,0.12)] dark:hover:bg-cyan-200"
+              className="inline-flex h-13 items-center justify-center rounded-xl bg-slate-950 px-7 text-base font-bold text-white shadow-[0_16px_35px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-[#8aebff] dark:text-[#00363e] dark:shadow-[0_16px_35px_rgba(138,235,255,0.12)] dark:hover:bg-cyan-200"
             >
               View Projects
             </a>
@@ -169,7 +174,7 @@ export default function HeroSection() {
             <a
               href="/resume/CV-Arrafi.pdf"
               download="CV-Arrafi.pdf"
-              className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-7 py-3 text-base font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-slate-800/50 dark:text-[#dae2fd] dark:hover:border-cyan-300/40 dark:hover:text-cyan-300"
+              className="inline-flex h-13 items-center justify-center rounded-xl border border-slate-200 bg-white px-7 text-base font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-slate-800/50 dark:text-[#dae2fd] dark:hover:border-cyan-300/40 dark:hover:text-cyan-300"
             >
               Download Resume
             </a>
@@ -178,7 +183,7 @@ export default function HeroSection() {
               href="https://bit.ly/Awang-Portfolio"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-4 font-bold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-600 dark:border-white/10 dark:bg-slate-800/50 dark:text-[#dae2fd] dark:hover:border-cyan-300/30 dark:hover:text-cyan-300"
+              className="inline-flex h-13 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-7 text-base font-bold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-600 dark:border-white/10 dark:bg-slate-800/50 dark:text-[#dae2fd] dark:hover:border-cyan-300/30 dark:hover:text-cyan-300"
             >
               View Other Portfolio
               <span aria-hidden="true">↗</span>
@@ -223,8 +228,8 @@ export default function HeroSection() {
 
             {/* Code */}
             <div
-              className="overflow-hidden rounded-xl border border-slate-200 bg-[#f8fbff] p-5 font-code text-sm leading-7 text-slate-600 dark:border-white/10 dark:bg-[#0b1326] dark:text-slate-400 md:p-6"
-              aria-label="Decorative code preview"
+              className="code-lines overflow-hidden rounded-xl border border-slate-200 bg-[#f8fbff] p-5 font-code text-sm leading-7 text-slate-600 dark:border-white/10 dark:bg-[#0b1326] dark:text-slate-400 md:p-6"
+              aria-hidden="true"
             >
               <p>
                 <span className="text-violet-600 dark:text-violet-300">
@@ -293,7 +298,10 @@ export default function HeroSection() {
 
               <p className="pl-4 text-slate-500 dark:text-slate-400">);</p>
 
-              <p className="text-slate-500 dark:text-slate-400">{"};"}</p>
+              <p className="text-slate-500 dark:text-slate-400">
+                {"};"}
+                <span className="caret ml-1 inline-block h-4 w-2 translate-y-0.5 bg-cyan-500 dark:bg-cyan-300" />
+              </p>
             </div>
           </div>
         </div>

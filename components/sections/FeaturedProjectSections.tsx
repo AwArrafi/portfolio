@@ -1,5 +1,6 @@
 import { projects } from "../../data/projects";
 import ProjectCard from "../ui/ProjectCard";
+import SectionHeader from "../ui/SectionHeader";
 
 export default function FeaturedProjectsSection() {
   return (
@@ -13,19 +14,15 @@ export default function FeaturedProjectsSection() {
 
       <div className="absolute bottom-20 right-10 h-72 w-72 rounded-full bg-violet-300/15 blur-3xl dark:bg-violet-300/10" />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="reveal relative mx-auto max-w-7xl">
         {/* Section Header */}
 
         <div className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-[#dae2fd] md:text-4xl">
-              Featured Projects
-            </h2>
-
-            <p className="mt-3 text-base leading-7 text-slate-600 dark:text-[#bbc9cd]">
-              A selection of my best work across different domains.
-            </p>
-          </div>
+          <SectionHeader
+            label="Projects"
+            title="Featured Projects"
+            subtitle="A selection of my best work across different domains."
+          />
 
           <a
             href="#"

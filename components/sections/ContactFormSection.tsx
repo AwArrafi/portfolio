@@ -148,7 +148,7 @@ export default function ContactFormSection() {
 
       <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-violet-300/15 blur-3xl dark:bg-violet-300/10" />
 
-      <div className="relative mx-auto max-w-7xl rounded-4xl border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.10)] dark:border-white/10 dark:bg-slate-800/50 dark:shadow-[0_24px_70px_rgba(0,0,0,0.30)] md:p-10 lg:p-16">
+      <div className="reveal relative mx-auto max-w-7xl rounded-4xl border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.10)] dark:border-white/10 dark:bg-slate-800/50 dark:shadow-[0_24px_70px_rgba(0,0,0,0.30)] md:p-10 lg:p-16">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Contact Information */}
           <div>
@@ -225,7 +225,7 @@ export default function ContactFormSection() {
                       name: event.target.value,
                     }))
                   }
-                  className="w-full rounded-xl border border-slate-200 bg-[#f8fbff] px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#0b1326] dark:text-[#dae2fd] dark:placeholder:text-slate-500 dark:focus:border-cyan-300/50 dark:focus:bg-[#0b1326]"
+                  className="w-full rounded-xl border border-slate-200 bg-[#f8fbff] px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-400/15 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#0b1326] dark:text-[#dae2fd] dark:placeholder:text-slate-500 dark:focus:border-cyan-300/50 dark:focus:ring-cyan-300/10 dark:focus:bg-[#0b1326]"
                 />
               </div>
 
@@ -254,7 +254,7 @@ export default function ContactFormSection() {
                       email: event.target.value,
                     }))
                   }
-                  className="w-full rounded-xl border border-slate-200 bg-[#f8fbff] px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#0b1326] dark:text-[#dae2fd] dark:placeholder:text-slate-500 dark:focus:border-cyan-300/50 dark:focus:bg-[#0b1326]"
+                  className="w-full rounded-xl border border-slate-200 bg-[#f8fbff] px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-400/15 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#0b1326] dark:text-[#dae2fd] dark:placeholder:text-slate-500 dark:focus:border-cyan-300/50 dark:focus:ring-cyan-300/10 dark:focus:bg-[#0b1326]"
                 />
               </div>
             </div>
@@ -283,7 +283,7 @@ export default function ContactFormSection() {
                   }))
                 }
                 rows={6}
-                className="w-full resize-none rounded-xl border border-slate-200 bg-[#f8fbff] px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#0b1326] dark:text-[#dae2fd] dark:placeholder:text-slate-500 dark:focus:border-cyan-300/50 dark:focus:bg-[#0b1326]"
+                className="w-full resize-none rounded-xl border border-slate-200 bg-[#f8fbff] px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-400/15 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#0b1326] dark:text-[#dae2fd] dark:placeholder:text-slate-500 dark:focus:border-cyan-300/50 dark:focus:ring-cyan-300/10 dark:focus:bg-[#0b1326]"
               />
             </div>
 

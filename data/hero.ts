@@ -2,7 +2,8 @@ export const heroSkills = [
   "React",
   "Next.js",
   "TypeScript",
-  "SCSS",
+  "Tailwind CSS",
+  "Django",
   "Laravel",
-  "MySQL",
+  "PostgreSQL",
 ];

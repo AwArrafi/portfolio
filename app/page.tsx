@@ -4,6 +4,7 @@ import ProfessionalJourneySection from "@/components/sections/ProfessionalJourne
 import ProfileShowcaseSection from "@/components/sections/ProfileShowcaseSection";
 import ContactFormSection from "@/components/sections/ContactFormSection";
 import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,8 @@ export default function Home() {
         <ProfessionalJourneySection />
         <ContactFormSection />
       </main>
+
+      <Footer />
     </>
   );
 }

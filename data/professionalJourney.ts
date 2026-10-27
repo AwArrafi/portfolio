@@ -1,6 +1,7 @@
 export type JourneyItem = {
   id: number;
   title: string;
+  role?: string;
   period: string;
   description: string;
   variant: "cyan" | "violet" | "gray";
@@ -16,16 +17,27 @@ export type SkillGroup = {
 
 export const journeyItems: JourneyItem[] = [
   {
+    id: 4,
+    title: "PT. Wira Sandi",
+    role: "Software Developer",
+    period: "2026 – Present",
+    description:
+      "Developing a multi-company HRMS for a security outsourcing company, covering recruitment, QR + GPS attendance, overtime, leave, and payroll (BPJS, PPh 21, THR). Integrated psychological assessment results into the recruitment pipeline and documented end-to-end workflows with UAT checklists for 8 user roles.",
+    variant: "cyan",
+  },
+  {
     id: 1,
     title: "Intern in PT. Winnicode Garuda",
+    role: "Full-Stack Developer",
     period: "2025",
     description:
       "Deepening expertise in React, Laravel, and Node.JS. Focusing on component structure, responsive interfaces, performance optimization, and refined UI/UX implementation.",
-    variant: "cyan",
+    variant: "violet",
   },
   {
     id: 2,
     title: "Intern at Diskominfo Kutai Kartanegara",
+    role: "Programmer",
     period: "2024",
     description:
       "Developed robust web applications using Laravel. Managed relational databases, and reconstruct features",
@@ -51,9 +63,9 @@ export const skillGroups: SkillGroup[] = [
       "React",
       "Next.js",
       "TypeScript",
-      "Tailwind",
-      "SCSS",
       "JavaScript",
+      "Tailwind CSS",
+      "SCSS",
     ],
   },
   {
@@ -61,13 +73,31 @@ export const skillGroups: SkillGroup[] = [
     title: "Backend",
     icon: "{}",
     variant: "violet",
-    skills: ["PHP", "Laravel", "MySQL", "REST API"],
+    skills: [
+      "Python",
+      "Django",
+      "Django REST Framework",
+      "PHP",
+      "Laravel",
+      "PostgreSQL",
+      "MySQL",
+      "REST API",
+    ],
   },
   {
     id: 3,
     title: "Tools",
     icon: "⚙",
     variant: "gray",
-    skills: ["Figma", "Git", "Vercel", "Postman", "Visual Studio Code"],
+    skills: [
+      "Git",
+      "GitHub Actions",
+      "Vercel",
+      "Render",
+      "Cloudflare",
+      "Figma",
+      "Postman",
+      "Visual Studio Code",
+    ],
   },
 ];

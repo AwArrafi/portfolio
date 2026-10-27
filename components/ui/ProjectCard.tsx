@@ -22,6 +22,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <article
       className="
         group
+        relative
         flex
         h-full
         flex-col
@@ -82,7 +83,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           href={project.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold tracking-wide text-cyan-600 transition hover:gap-3 hover:text-cyan-700 dark:text-cyan-300 dark:hover:text-cyan-200"
+          aria-label={`${project.cta}: ${project.title}`}
+          className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold tracking-wide text-cyan-600 transition after:absolute after:inset-0 after:rounded-2xl group-hover:gap-3 group-hover:text-cyan-700 dark:text-cyan-300 dark:group-hover:text-cyan-200"
         >
           {project.cta}
 

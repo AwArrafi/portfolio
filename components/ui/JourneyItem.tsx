@@ -2,6 +2,7 @@ import type { JourneyItem as JourneyItemType } from "../../data/professionalJour
 
 type JourneyItemProps = {
   item: JourneyItemType;
+  isCurrent?: boolean;
 };
 
 const dotStyles: Record<JourneyItemType["variant"], string> = {
@@ -17,18 +18,33 @@ const periodStyles: Record<JourneyItemType["variant"], string> = {
   gray: "border-slate-200 bg-slate-100 text-slate-600 dark:border-white/10 dark:bg-slate-400/10 dark:text-slate-300",
 };
 
-export default function JourneyItem({ item }: JourneyItemProps) {
+export default function JourneyItem({ item, isCurrent }: JourneyItemProps) {
   return (
     <li className="relative pl-10">
+      {isCurrent && (
+        <span
+          className="absolute left-0 top-1 h-6 w-6 rounded-full bg-cyan-400/60 motion-safe:animate-ping"
+          aria-hidden="true"
+        />
+      )}
+
       <span
         className={`absolute left-0 top-1 z-10 h-6 w-6 rounded-full border-4 border-white ring-4 dark:border-slate-800 ${dotStyles[item.variant]}`}
         aria-hidden="true"
       />
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <h3 className="text-base font-bold text-slate-900 dark:text-[#dae2fd]">
-          {item.title}
-        </h3>
+        <div>
+          <h3 className="text-base font-bold text-slate-900 dark:text-[#dae2fd]">
+            {item.title}
+          </h3>
+
+          {item.role && (
+            <p className="mt-0.5 text-sm font-medium text-slate-500 dark:text-slate-400">
+              {item.role}
+            </p>
+          )}
+        </div>
 
         <span
           className={`w-fit rounded-full border px-3 py-1 text-xs font-bold tracking-wide ${periodStyles[item.variant]}`}
