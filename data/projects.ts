@@ -17,6 +17,31 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 4,
+    title: "ApplyTrack",
+    description:
+      "A job application tracker for managing applications, interviews, and job search progress, with pipeline analytics, Google sign-in, and an English/Indonesian interface.",
+    image: "/images/projects/applytrack.png",
+    imageAlt: "ApplyTrack dashboard preview",
+    cta: "Link to Website",
+    previewType: "web",
+    href: "https://applytrack.my.id",
+    tags: [
+      {
+        label: "NEXT.JS",
+        variant: "cyan",
+      },
+      {
+        label: "DJANGO",
+        variant: "green",
+      },
+      {
+        label: "POSTGRESQL",
+        variant: "violet",
+      },
+    ],
+  },
+  {
     id: 1,
     title: "DASSCare",
     description:
