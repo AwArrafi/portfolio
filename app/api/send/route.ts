@@ -3,11 +3,71 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// shortcut: in-memory, so each serverless instance counts separately; move to Upstash/KV if spam gets through
+const RATE_LIMIT = 3;
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const recentRequests = new Map<string, number[]>();
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const timestamps = (recentRequests.get(ip) ?? []).filter(
+    (time) => now - time < RATE_WINDOW_MS,
+  );
+
+  if (timestamps.length >= RATE_LIMIT) {
+    recentRequests.set(ip, timestamps);
+    return true;
+  }
+
+  timestamps.push(now);
+  recentRequests.set(ip, timestamps);
+
+  // Keep the map from growing without bound
+  if (recentRequests.size > 1000) {
+    for (const [key, times] of recentRequests) {
+      if (times.every((time) => now - time >= RATE_WINDOW_MS)) {
+        recentRequests.delete(key);
+      }
+    }
+  }
+
+  return false;
+}
+
 export async function POST(request: Request) {
   try {
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+
+    if (isRateLimited(ip)) {
+      return Response.json(
+        {
+          error: "Too many messages. Please try again in a few minutes.",
+        },
+        {
+          status: 429,
+        },
+      );
+    }
+
     const body = await request.json();
 
-    const { name, email, message } = body;
+    const { name, email, message, website } = body;
+
+    // Honeypot filled: pretend success so bots don't retry
+    if (typeof website === "string" && website.trim() !== "") {
+      return Response.json(
+        {
+          success: true,
+          message: "Email sent successfully.",
+        },
+        {
+          status: 200,
+        },
+      );
+    }
 
     // Make sure all values are strings
     if (
@@ -108,7 +168,8 @@ export async function POST(request: Request) {
 
     // Send email
     const { data, error } = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
+      // Set RESEND_FROM (e.g. "Portfolio <hello@yourdomain.com>") once a domain is verified in Resend
+      from: process.env.RESEND_FROM ?? "Portfolio <onboarding@resend.dev>",
       to: ["arrafiandroid@gmail.com"],
       replyTo: cleanEmail,
       subject: `Portfolio Contact from ${cleanName}`,

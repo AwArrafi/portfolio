@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
+import { siteUrl } from "@/lib/site";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -27,10 +28,26 @@ const jetBrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const title = "Awang — Frontend-Focused Full-Stack Developer";
+const description =
+  "Portfolio of Awang, a frontend-focused full-stack developer building clean, responsive, and user-centered web applications.";
+
 export const metadata: Metadata = {
-  title: "Awang — Frontend-Focused Full-Stack Developer",
-  description:
-    "Portfolio of Awang, a frontend-focused full-stack developer building clean, responsive, and user-centered web applications.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: "/",
+    siteName: "Awang Arrafi",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({

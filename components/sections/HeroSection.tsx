@@ -68,9 +68,9 @@ export default function HeroSection() {
 
             {/* Profile Info */}
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-slate-950 dark:text-[#dae2fd]">
+              <p className="text-2xl font-bold tracking-tight text-slate-950 dark:text-[#dae2fd]">
                 Awang Arrafi
-              </h2>
+              </p>
 
               <p className="mt-1 text-sm font-medium text-slate-500 dark:text-[#bbc9cd]">
                 Full-Stack Developer

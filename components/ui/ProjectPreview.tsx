@@ -49,7 +49,8 @@ export default function ProjectPreview({ project }: ProjectPreviewProps) {
               src={project.image}
               alt={project.imageAlt}
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              sizes="160px"
+              quality={90}
               className="object-contain"
             />
           </div>
@@ -60,7 +61,9 @@ export default function ProjectPreview({ project }: ProjectPreviewProps) {
             src={project.image}
             alt={project.imageAlt}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            // 2-column grid capped at max-w-7xl, so a card never exceeds ~640px
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
+            quality={90}
             className="object-cover object-top transition duration-500 group-hover:scale-105"
           />
         </div>

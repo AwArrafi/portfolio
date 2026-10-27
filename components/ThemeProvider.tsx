@@ -26,10 +26,22 @@ const getClientSnapshot = (): Theme => {
 };
 
 const subscribe = (callback: () => void) => {
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  // Follow the device theme until the visitor picks one with the toggle
+  const handleDeviceChange = (event: MediaQueryListEvent) => {
+    if (localStorage.getItem("theme")) return;
+
+    document.documentElement.classList.toggle("dark", event.matches);
+    callback();
+  };
+
   window.addEventListener("theme-change", callback);
+  media.addEventListener("change", handleDeviceChange);
 
   return () => {
     window.removeEventListener("theme-change", callback);
+    media.removeEventListener("change", handleDeviceChange);
   };
 };
 

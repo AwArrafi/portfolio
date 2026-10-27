@@ -30,6 +30,10 @@ export default function ContactFormSection() {
     const name = formData.name.trim();
     const email = formData.email.trim();
     const message = formData.message.trim();
+    // Honeypot: hidden from people, bots tend to fill it
+    const website =
+      (event.currentTarget.elements.namedItem("website") as HTMLInputElement)
+        ?.value ?? "";
 
     setStatus({
       type: "",
@@ -100,6 +104,7 @@ export default function ContactFormSection() {
           name,
           email,
           message,
+          website,
         }),
       });
 
@@ -198,6 +203,14 @@ export default function ContactFormSection() {
 
           {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Honeypot, kept off-screen and out of the tab order */}
+            <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+              <label>
+                Website
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+              </label>
+            </div>
+
             {/* Name & Email */}
             <div className="grid gap-5 sm:grid-cols-2">
               {/* Name */}

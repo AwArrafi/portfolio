@@ -15,7 +15,7 @@ export const socialLinks = [
   {
     id: 2,
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/awang-arrafi-a30820217/?isSelfProfile=true",
+    href: "https://www.linkedin.com/in/awangarrafi/",
   },
   {
     id: 3,

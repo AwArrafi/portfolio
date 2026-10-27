@@ -56,7 +56,7 @@ export default function ProfileShowcaseSection() {
               FLOATING CHAT CARD
           ========================== */}
 
-          <div className="absolute bottom-16 left-0 z-20 sm:bottom-auto sm:top-24 rotate-[-5deg] rounded-2xl border border-white bg-white/90 px-5 py-4 shadow-[0_20px_50px_rgba(15,23,42,0.12)] backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/10 dark:bg-slate-800/90 dark:shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+          <div className="absolute bottom-6 left-0 z-20 sm:bottom-auto sm:top-24 rotate-[-5deg] rounded-2xl border border-white bg-white/90 px-5 py-4 shadow-[0_20px_50px_rgba(15,23,42,0.12)] backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/10 dark:bg-slate-800/90 dark:shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
             <div className="flex items-start gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-lg dark:bg-cyan-300/10">
                 💬
@@ -78,7 +78,7 @@ export default function ProfileShowcaseSection() {
               FLOATING STATUS
           ========================== */}
 
-          <div className="absolute right-0 top-2 z-20 rotate-[4deg] sm:top-36 rounded-full border border-emerald-100 bg-white/90 px-4 py-2 shadow-[0_15px_40px_rgba(15,23,42,0.10)] backdrop-blur-md dark:border-emerald-400/20 dark:bg-slate-800/90 dark:shadow-[0_15px_40px_rgba(0,0,0,0.25)]">
+          <div className="absolute right-0 top-36 z-20 hidden rotate-[4deg] sm:block rounded-full border border-emerald-100 bg-white/90 px-4 py-2 shadow-[0_15px_40px_rgba(15,23,42,0.10)] backdrop-blur-md dark:border-emerald-400/20 dark:bg-slate-800/90 dark:shadow-[0_15px_40px_rgba(0,0,0,0.25)]">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-emerald-400 opacity-50" />
@@ -102,7 +102,7 @@ export default function ProfileShowcaseSection() {
             width={1045}
             height={1567}
             priority
-            className="relative z-10 h-[28rem] w-auto sm:h-140 lg:h-180 object-contain drop-shadow-[0_25px_35px_rgba(15,23,42,0.15)] transition duration-500 hover:-translate-y-2 dark:drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)]"
+            className="relative z-10 -mt-20 h-[38rem] w-auto sm:mt-0 sm:h-140 lg:h-180 object-contain drop-shadow-[0_25px_35px_rgba(15,23,42,0.15)] transition duration-500 hover:-translate-y-2 dark:drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)]"
           />
 
           {/* =========================
