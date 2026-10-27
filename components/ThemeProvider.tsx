@@ -20,14 +20,9 @@ const getServerSnapshot = (): Theme => {
   return "light";
 };
 
+// The theme-init script in app/layout.tsx sets the class before hydration
 const getClientSnapshot = (): Theme => {
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "dark" || savedTheme === "light") {
-    return savedTheme;
-  }
-
-  return "light";
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
 };
 
 const subscribe = (callback: () => void) => {

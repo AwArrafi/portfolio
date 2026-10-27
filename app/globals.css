@@ -19,6 +19,12 @@ body {
   font-family: var(--font-plus-jakarta), system-ui, sans-serif;
   background: #f6f9ff;
   color: #0f172a;
+  transition: background-color 300ms;
+}
+
+.dark body {
+  background: #07111f;
+  color: #dae2fd;
 }
 
 .font-code {

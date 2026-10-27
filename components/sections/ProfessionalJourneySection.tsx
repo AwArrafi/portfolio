@@ -36,7 +36,7 @@ export default function ProfessionalJourneySection() {
         </article>
 
         {/* Tech Stack */}
-        <div className="grid gap-6">
+        <div className="grid content-start gap-4 lg:sticky lg:top-28 lg:self-start">
           {skillGroups.map((group) => (
             <TechStackCard key={group.id} group={group} />
           ))}

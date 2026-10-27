@@ -32,7 +32,7 @@ export default function TechStackCard({ group }: TechStackCardProps) {
   return (
     <article
       aria-label={group.title}
-      className={`rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_16px_45px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-slate-800/50 dark:shadow-[0_16px_45px_rgba(0,0,0,0.20)] ${cardStyles[group.variant]}`}
+      className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_16px_45px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-slate-800/50 dark:shadow-[0_16px_45px_rgba(0,0,0,0.20)] ${cardStyles[group.variant]}`}
     >
       <div className="flex items-center gap-3">
         <div
@@ -46,7 +46,7 @@ export default function TechStackCard({ group }: TechStackCardProps) {
         </h3>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2">
         {group.skills.map((skill) => (
           <span
             key={skill}

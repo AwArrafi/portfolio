@@ -22,7 +22,7 @@ export const journeyItems: JourneyItem[] = [
     role: "Software Developer",
     period: "2026 – Present",
     description:
-      "Developing a multi-company HRMS for a security outsourcing company, covering recruitment, QR + GPS attendance, overtime, leave, and payroll (BPJS, PPh 21, THR). Integrated psychological assessment results into the recruitment pipeline and documented end-to-end workflows with UAT checklists for 8 user roles.",
+      "Developing a multi-company HRMS for a security outsourcing company, covering recruitment, QR + GPS attendance, overtime, leave, and payroll (BPJS, PPh 21, THR). Integrated psychological assessment results into the recruitment pipeline and documented end-to-end workflows with UAT checklists",
     variant: "cyan",
   },
   {
