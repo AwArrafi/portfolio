@@ -127,15 +127,16 @@ export default function ProfileShowcaseSection() {
           <p className="mt-6 text-base leading-8 text-slate-600 dark:text-[#bbc9cd] md:text-lg">
             My background is rooted in full-stack development with Laravel and
             Django, where I learned to appreciate the robustness of back-end
-            logic and database design. However, I discovered my true passion at the point
-            where users meet the product.
+            logic and database design. I enjoy carrying that foundation all the way to
+            the point where users meet the product.
           </p>
 
           <p className="mt-5 text-base leading-8 text-slate-600 dark:text-[#bbc9cd] md:text-lg">
-            I&apos;ve specialized my focus on the frontend, mastering React and
-            Next.js to create seamless, high-performance user experiences. My
-            full-stack foundation gives me a unique advantage: I don&apos;t just
-            build UI; I build interfaces that understand the data they serve.
+            I work across the stack, pairing React and Next.js interfaces with
+            Laravel and Django backends to create seamless, high-performance
+            products. Working on both sides gives me a unique advantage: I
+            don&apos;t just build UI; I build interfaces that understand the
+            data they serve.
           </p>
 
           {/* Feature Cards */}

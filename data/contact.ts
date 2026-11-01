@@ -1,9 +1,9 @@
 export const contactInfo = {
   title: "Let’s build something together.",
   description:
-    "I’m currently looking for new opportunities as a Frontend Developer. Whether you have a project in mind or just want to say hi, my inbox is always open.",
+    "I’m currently looking for new opportunities as a Full-Stack Developer. Whether you have a project in mind or just want to say hi, my inbox is always open.",
   email: "awangarrafi@gmail.com",
-  availability: "Available for frontend developer opportunities",
+  availability: "Available for full-stack developer opportunities",
 };
 
 export const socialLinks = [

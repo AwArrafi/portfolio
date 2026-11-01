@@ -28,9 +28,9 @@ const jetBrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const title = "Awang — Frontend-Focused Full-Stack Developer";
+const title = "Awang — Full-Stack Developer";
 const description =
-  "Portfolio of Awang, a frontend-focused full-stack developer building clean, responsive, and user-centered web applications.";
+  "Portfolio of Awang, a full-stack developer building clean, responsive, and user-centered web applications.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

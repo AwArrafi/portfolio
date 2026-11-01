@@ -20,9 +20,9 @@ export const journeyItems: JourneyItem[] = [
     id: 4,
     title: "PT. Wira Sandi",
     role: "Software Developer",
-    period: "2026 – Present",
+    period: "Oct 2026 – Present",
     description:
-      "Developing a multi-company HRMS for a security outsourcing company, covering recruitment, QR + GPS attendance, overtime, leave, and payroll (BPJS, PPh 21, THR). Integrated psychological assessment results into the recruitment pipeline and documented end-to-end workflows with UAT checklists",
+      "Completing HRMS master data (clients, locations/units, positions, departments) and cleaning,validating employee records in Excel, including NIK, emails, duplicates, and data formats. Designing and developing the PT Wira Sandi company profile website to strengthen the company's digital branding.",
     variant: "cyan",
   },
   {

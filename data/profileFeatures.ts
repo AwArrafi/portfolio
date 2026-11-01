@@ -8,7 +8,7 @@ export const profileFeatures = [
   {
     id: 2,
     title: "Full-Stack Logic",
-    description: "Backend context for smarter frontend code",
+    description: "From database design to polished interfaces",
     icon: "{}",
   },
 ];
