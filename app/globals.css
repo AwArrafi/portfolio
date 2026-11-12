@@ -364,4 +364,24 @@ html[data-intro-seen] .intro-land {
   .stack-marquee {
     animation: none;
   }
+
+  .project-card,
+  .project-card * {
+    transition: none !important;
+  }
 }
+
+/* ===== Project tones (Selected work + /projects): pale in light, deep in dark ===== */
+.tone-cyan { --t-bg: #e3f4f8; --t-line: rgba(14, 111, 134, 0.18); --t-chip: rgba(14, 111, 134, 0.1); --t-text: #0e6f86; --t-desc: #3e5566; }
+.tone-violet { --t-bg: #ececfb; --t-line: rgba(79, 70, 229, 0.16); --t-chip: rgba(79, 70, 229, 0.1); --t-text: #4338ca; --t-desc: #4b4f72; }
+.tone-amber { --t-bg: #fbf0e4; --t-line: rgba(180, 83, 9, 0.16); --t-chip: rgba(180, 83, 9, 0.1); --t-text: #9a4a0b; --t-desc: #6b5443; }
+.tone-green { --t-bg: #e3f5ee; --t-line: rgba(4, 120, 87, 0.16); --t-chip: rgba(4, 120, 87, 0.1); --t-text: #047857; --t-desc: #3f5f55; }
+.tone-rose { --t-bg: #fbe9ee; --t-line: rgba(190, 18, 60, 0.14); --t-chip: rgba(190, 18, 60, 0.08); --t-text: #be123c; --t-desc: #6b4450; }
+.tone-navy { --t-bg: #e6ecf7; --t-line: rgba(11, 19, 38, 0.14); --t-chip: rgba(11, 19, 38, 0.08); --t-text: #0b1326; --t-desc: #4a5874; }
+
+.dark .tone-cyan { --t-bg: #0c2230; --t-line: rgba(138, 235, 255, 0.16); --t-chip: rgba(138, 235, 255, 0.12); --t-text: #8aebff; --t-desc: #a3aec6; }
+.dark .tone-violet { --t-bg: #15183a; --t-line: rgba(180, 184, 255, 0.16); --t-chip: rgba(180, 184, 255, 0.13); --t-text: #c3c6ff; --t-desc: #a9adcf; }
+.dark .tone-amber { --t-bg: #261a12; --t-line: rgba(255, 179, 107, 0.16); --t-chip: rgba(255, 179, 107, 0.13); --t-text: #ffc48c; --t-desc: #c2ae9e; }
+.dark .tone-green { --t-bg: #0e2621; --t-line: rgba(110, 231, 183, 0.16); --t-chip: rgba(110, 231, 183, 0.12); --t-text: #7eebc2; --t-desc: #9fc2b6; }
+.dark .tone-rose { --t-bg: #26121a; --t-line: rgba(255, 150, 180, 0.16); --t-chip: rgba(255, 150, 180, 0.12); --t-text: #ffa3bd; --t-desc: #c9a3b0; }
+.dark .tone-navy { --t-bg: #111a2c; --t-line: rgba(218, 226, 253, 0.14); --t-chip: rgba(218, 226, 253, 0.1); --t-text: #dae2fd; --t-desc: #8e9bb5; }

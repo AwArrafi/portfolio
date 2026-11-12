@@ -70,6 +70,9 @@ export default function TunnelIntro() {
       }, 250);
     };
 
+    // Kept on <html> (it survives client-side navigation), so coming back to "/" never replays the intro
+    const markSeen = () => html.setAttribute("data-intro-seen", "");
+
     const go = (next: Phase) => {
       phaseRef.current = next;
       setPhase(next);
@@ -86,6 +89,7 @@ export default function TunnelIntro() {
       document.getElementById("intro-heading")?.focus({ preventScroll: true });
       timer = window.setTimeout(() => {
         topSince = performance.now();
+        markSeen();
         go("done");
       }, 1200);
     };
@@ -96,6 +100,7 @@ export default function TunnelIntro() {
         finish();
         window.clearTimeout(timer);
         topSince = performance.now();
+        markSeen();
         return go("done");
       }
       // Always fly, even with reduced motion on: the fly-through is the point of the intro

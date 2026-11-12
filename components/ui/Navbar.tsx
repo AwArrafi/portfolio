@@ -49,7 +49,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 flex justify-center px-[clamp(16px,3vw,40px)] pt-4">
       <nav
         aria-label="Main"
-        className="flex w-full max-w-[1180px] items-center justify-between gap-6 rounded-full border border-(--line) bg-white/82 py-1.5 pl-[18px] pr-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-[14px] min-[761px]:py-2 min-[761px]:pl-6 min-[761px]:pr-2 dark:bg-[rgba(11,19,38,0.72)]"
+        className="flex w-full max-w-[1180px] items-center justify-between gap-3 min-[761px]:gap-6 rounded-full border border-(--line) bg-white/82 py-1.5 pl-[18px] pr-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-[14px] min-[761px]:py-2 min-[761px]:pl-6 min-[761px]:pr-2 dark:bg-[rgba(11,19,38,0.72)]"
       >
         {/* Logo */}
         <a
@@ -83,7 +83,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            className="flex h-10 items-center rounded-full bg-(--accent) px-4 text-sm font-bold text-white transition hover:opacity-90 min-[761px]:h-11 min-[761px]:px-[22px] min-[761px]:text-[15px] dark:text-[#07111f]"
+            className="flex h-10 items-center whitespace-nowrap max-[339px]:hidden rounded-full bg-(--accent) px-3.5 text-sm font-bold text-white transition hover:opacity-90 min-[761px]:h-11 min-[761px]:px-[22px] min-[761px]:text-[15px] dark:text-[#07111f]"
           >
             Let&apos;s Talk
           </a>

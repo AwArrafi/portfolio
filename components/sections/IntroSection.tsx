@@ -67,7 +67,7 @@ export default function IntroSection() {
         </svg>
         Replay intro
       </button>
-      <div className="mx-auto flex max-w-7xl-wrap items-center justify-between gap-x-18 gap-y-14">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-18 gap-y-14">
         <div className="intro-land flex min-w-0 max-w-150 flex-[1_1_500px] flex-col gap-8">
           <div className="flex flex-wrap items-center gap-6">
             {/* Click swaps professional ↔ anime photo */}
