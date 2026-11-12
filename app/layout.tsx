@@ -20,6 +20,10 @@ try {
   }
   document.documentElement.classList.toggle("dark", theme === "dark");
 } catch (e) {}
+// Tunnel intro plays once per session; mark it seen before paint so it never flashes
+try {
+  if (sessionStorage.getItem("introSeen")) document.documentElement.setAttribute("data-intro-seen", "");
+} catch (e) {}
 `;
 
 const jetBrainsMono = JetBrains_Mono({
@@ -61,6 +65,9 @@ export default function RootLayout({
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}
         </Script>
+        <noscript>
+          <style>{`.tunnel-intro{display:none!important}html{overflow:visible!important}.intro-land{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
