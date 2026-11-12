@@ -15,9 +15,21 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
+html {
+  background: #f6f9ff;
+  /* Pull-down at the top replays the intro, so no pull-to-refresh */
+  overscroll-behavior-y: contain;
+}
+
+html.dark {
+  background: #07111f;
+}
+
 body {
   font-family: var(--font-plus-jakarta), system-ui, sans-serif;
   background: #f6f9ff;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
   color: #0f172a;
   transition: background-color 300ms;
 }
@@ -203,6 +215,8 @@ html:not([data-intro-seen]):has(.tunnel-intro:not([data-phase="landing"])) {
   overflow: hidden;
   box-shadow: 0 0 0 1px rgba(11, 19, 38, 0.12), 0 2em 4em rgba(11, 19, 38, 0.18);
   transform: var(--tf);
+  /* Own GPU layer per card: the fly-through then doesn't repaint (and drop frames) on phones */
+  will-change: transform, opacity;
 }
 
 .dark .tunnel-card {
@@ -273,8 +287,7 @@ html:not([data-intro-seen]):has(.tunnel-intro:not([data-phase="landing"])) {
 
 .tunnel-blur-in {
   display: inline-block;
-  opacity: 0;
-  animation: tunnel-blur-in 0.7s ease-out forwards;
+  animation: tunnel-blur-in 0.7s ease-out both;
 }
 
 .tunnel-bob {
@@ -319,7 +332,8 @@ html:not([data-intro-seen]):has(.tunnel-intro:not([data-phase="landing"])) {
 
 @keyframes tunnel-blur-in {
   from {
-    opacity: 0;
+    /* Not 0: Chrome skips fully transparent text when timing LCP, which held the paint back ~3s */
+    opacity: 0.01;
     filter: blur(10px);
     transform: translateY(-16px);
   }

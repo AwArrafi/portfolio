@@ -73,8 +73,17 @@ export default function TunnelIntro() {
     // Kept on <html> (it survives client-side navigation), so coming back to "/" never replays the intro
     const markSeen = () => html.setAttribute("data-intro-seen", "");
 
+    // Non-passive listeners make every scroll wait on JS (laggy on phones), so they only block while the intro is up
+    const listen = (blocking: boolean) => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.addEventListener("wheel", onWheel, { passive: !blocking });
+      window.addEventListener("touchmove", onTouchMove, { passive: !blocking });
+    };
+
     const go = (next: Phase) => {
       phaseRef.current = next;
+      listen(next === "idle" || next === "flying");
       setPhase(next);
     };
 
@@ -163,10 +172,8 @@ export default function TunnelIntro() {
     const onTouchMove = (event: TouchEvent) => {
       if (phaseRef.current === "landing") return;
       if (phaseRef.current === "done") {
-        if (event.touches[0].clientY - touchY > 60 && atTopLongEnough()) {
-          event.preventDefault(); // pull-down at the top replays instead of pull-to-refresh
-          replay();
-        }
+        // Pull-down at the top replays (pull-to-refresh is off via overscroll-behavior in globals.css)
+        if (event.touches[0].clientY - touchY > 60 && atTopLongEnough()) replay();
         return;
       }
       event.preventDefault();
@@ -188,9 +195,8 @@ export default function TunnelIntro() {
       enter(!!(event.target as HTMLElement).closest("[data-skip-intro]"));
     };
 
-    window.addEventListener("wheel", onWheel, { passive: false });
+    listen(phaseRef.current !== "done");
     window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
     window.addEventListener("touchcancel", onTouchEnd, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -246,7 +252,9 @@ export default function TunnelIntro() {
                 width={card.img.phone ? 404 : 720}
                 height={card.img.phone ? 820 : 450}
                 sizes={card.img.phone ? "130px" : "(max-width: 640px) 180px, 252px"}
-                priority={i < 4}
+                // Eager: lazy-loading never fires for cards deep in the 3D tunnel, so they'd stay blank
+                loading="eager"
+                fetchPriority={i < 4 ? "high" : "low"}
                 className="h-full w-full object-cover object-top"
               />
             </div>
@@ -260,7 +268,7 @@ export default function TunnelIntro() {
           role="heading"
           aria-level={1}
           aria-label="Awang Arrafi"
-          className="font-code m-0 flex flex-col items-center whitespace-nowrap text-[clamp(60px,10.5vw,160px)] font-bold leading-[0.82] tracking-[-0.06em] text-(--accent) max-[640px]:text-[68px]"
+          className="font-code m-0 flex flex-col items-center whitespace-nowrap text-[clamp(52px,min(10.5vw,20vh),160px)] font-bold leading-[0.82] tracking-[-0.06em] text-(--accent) max-[640px]:text-[68px]"
         >
           <span
             className="tunnel-blur-in"
@@ -288,7 +296,7 @@ export default function TunnelIntro() {
 
       {/* Hint */}
       <div
-        className="tunnel-hint font-code pointer-events-none absolute bottom-9 left-0 right-0 z-[2] flex flex-col items-center gap-2 text-xs uppercase tracking-[0.12em] text-(--muted)"
+        className="tunnel-hint font-code pointer-events-none absolute bottom-9 left-0 [@media(max-height:500px)]:bottom-3 right-0 z-[2] flex flex-col items-center gap-2 text-xs uppercase tracking-[0.12em] text-(--muted)"
         aria-hidden="true"
       >
         <span className="max-[640px]:hidden">Scroll · click · or press any key</span>

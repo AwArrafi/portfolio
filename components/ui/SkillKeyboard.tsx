@@ -12,6 +12,8 @@ export default function SkillKeyboard({ variant = "brand" }: Props) {
   const [active, setActive] = useState(6);
   const [userPicked, setUserPicked] = useState(false);
   const hovered = useRef(false);
+  const visible = useRef(false);
+  const root = useRef<HTMLDivElement>(null);
   const mono = variant === "mono";
 
   // Auto-demo until the visitor picks a key themselves; it never takes over again after that
@@ -19,15 +21,26 @@ export default function SkillKeyboard({ variant = "brand" }: Props) {
     if (userPicked) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Rotating repaints 20 3D keys; skip it while off-screen or hidden under the tunnel intro (laggy on phones)
+    const observer = new IntersectionObserver(([entry]) => {
+      visible.current = entry.isIntersecting;
+    });
+    if (root.current) observer.observe(root.current);
+    const html = document.documentElement;
+
     const id = window.setInterval(() => {
-      if (hovered.current) return;
+      if (hovered.current || !visible.current || document.hidden) return;
+      if (!html.hasAttribute("data-intro-seen")) return;
       setActive((current) => {
         const next = Math.floor(Math.random() * (skillKeys.length - 1));
         return next >= current ? next + 1 : next;
       });
     }, 2600);
 
-    return () => window.clearInterval(id);
+    return () => {
+      window.clearInterval(id);
+      observer.disconnect();
+    };
   }, [userPicked]);
 
   const press = (i: number) => {
@@ -44,6 +57,7 @@ export default function SkillKeyboard({ variant = "brand" }: Props) {
 
   return (
     <div
+      ref={root}
       onPointerEnter={() => (hovered.current = true)}
       onPointerLeave={() => (hovered.current = false)}
       onFocus={() => (hovered.current = true)}
