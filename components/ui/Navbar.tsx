@@ -34,28 +34,42 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [isOpen]);
+
   return (
-    <header className="fixed inset-x-0 top-4 z-50 px-4">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between rounded-full border border-slate-200/80 bg-white/70 pl-6 pr-3 shadow-[0_10px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b1424]/70 dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+    <header className="sticky top-0 z-50 flex justify-center px-[clamp(16px,3vw,40px)] pt-4">
+      <nav
+        aria-label="Main"
+        className="flex w-full max-w-[1180px] items-center justify-between gap-6 rounded-full border border-(--line) bg-white/82 py-1.5 pl-[18px] pr-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-[14px] min-[761px]:py-2 min-[761px]:pl-6 min-[761px]:pr-2 dark:bg-[rgba(11,19,38,0.72)]"
+      >
         {/* Logo */}
         <a
           href="#home"
-          className="text-xl font-extrabold tracking-tight text-slate-900 transition hover:text-cyan-600 dark:text-[#dae2fd] dark:hover:text-cyan-300"
+          className="text-lg font-extrabold tracking-tight text-(--ink)"
         >
-          Awang<span className="text-cyan-500">.</span>
+          Awang<span className="text-(--accent)">.</span>
         </a>
 
         {/* Navigation */}
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-0.5 min-[761px]:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
               aria-current={active === item.href ? "page" : undefined}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+              className={`rounded-full px-4 py-[11px] text-[15px] font-semibold transition ${
                 active === item.href
-                  ? "bg-cyan-50 text-cyan-700 dark:bg-cyan-300/10 dark:text-cyan-300"
-                  : "text-slate-600 hover:text-cyan-600 dark:text-[#bbc9cd] dark:hover:text-cyan-300"
+                  ? "bg-[rgba(138,235,255,0.12)] text-(--accent)"
+                  : "text-(--muted) hover:text-(--accent)"
               }`}
             >
               {item.label}
@@ -69,7 +83,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            className="hidden rounded-full bg-slate-950 px-5 py-2.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 md:inline-flex dark:bg-[#8aebff] dark:text-[#00363e] dark:hover:bg-cyan-200"
+            className="flex h-10 items-center rounded-full bg-(--accent) px-4 text-sm font-bold text-white transition hover:opacity-90 min-[761px]:h-11 min-[761px]:px-[22px] min-[761px]:text-[15px] dark:text-[#07111f]"
           >
             Let&apos;s Talk
           </a>
@@ -81,7 +95,7 @@ export default function Navbar() {
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
             aria-label={isOpen ? "Close menu" : "Open menu"}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-cyan-300 md:hidden dark:border-white/10 dark:bg-slate-800 dark:text-slate-200"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-(--line) text-(--ink) min-[761px]:hidden"
           >
             <svg
               viewBox="0 0 24 24"
@@ -89,11 +103,11 @@ export default function Navbar() {
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              className="h-5 w-5"
+              className="h-[18px] w-[18px]"
               aria-hidden="true"
             >
               {isOpen ? (
-                <path d="M6 6l12 12M18 6 6 18" />
+                <path d="M18 6 6 18M6 6l12 12" />
               ) : (
                 <path d="M4 7h16M4 12h16M4 17h16" />
               )}
@@ -106,7 +120,7 @@ export default function Navbar() {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="mx-auto mt-2 max-w-6xl rounded-3xl border border-slate-200/80 bg-white/95 p-3 shadow-[0_20px_50px_rgba(15,23,42,0.12)] backdrop-blur-xl md:hidden dark:border-white/10 dark:bg-[#0b1424]/95"
+          className="absolute left-[clamp(16px,3vw,40px)] right-[clamp(16px,3vw,40px)] top-[76px] flex flex-col rounded-[20px] border border-(--line) bg-(--panel) p-2.5 text-[17px] font-semibold shadow-[0_20px_50px_rgba(0,0,0,0.4)] min-[761px]:hidden"
         >
           {navItems.map((item) => (
             <a
@@ -114,23 +128,15 @@ export default function Navbar() {
               href={item.href}
               onClick={() => setIsOpen(false)}
               aria-current={active === item.href ? "page" : undefined}
-              className={`block rounded-2xl px-4 py-3 text-base font-semibold transition ${
+              className={`flex min-h-11 items-center rounded-xl px-3.5 py-[13px] ${
                 active === item.href
-                  ? "bg-cyan-50 text-cyan-700 dark:bg-cyan-300/10 dark:text-cyan-300"
-                  : "text-slate-700 hover:bg-slate-50 dark:text-[#dae2fd] dark:hover:bg-white/5"
+                  ? "bg-[rgba(138,235,255,0.12)] text-(--accent)"
+                  : "text-(--ink)"
               }`}
             >
               {item.label}
             </a>
           ))}
-
-          <a
-            href="#contact"
-            onClick={() => setIsOpen(false)}
-            className="mt-2 block rounded-2xl bg-slate-950 px-4 py-3 text-center text-base font-bold text-white dark:bg-[#8aebff] dark:text-[#00363e]"
-          >
-            Let&apos;s Talk
-          </a>
         </div>
       )}
     </header>

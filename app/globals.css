@@ -128,3 +128,240 @@ body {
     transform: translateY(0);
   }
 }
+
+/* Redesign tokens (navbar, intro, keyboard) */
+:root {
+  --ink: #0b1326;
+  --muted: #4a5874;
+  --accent: #0e6f86;
+  --line: rgba(11, 19, 38, 0.14);
+  --panel: #ffffff;
+}
+
+.dark {
+  --ink: #dae2fd;
+  --muted: #8e9bb5;
+  --accent: #8aebff;
+  --line: rgba(218, 226, 253, 0.14);
+  --panel: #0b1326;
+}
+
+/* ===== Tunnel intro (always dark) ===== */
+.tunnel-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  background: #f6f9ff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.dark .tunnel-intro {
+  background: #07111f;
+}
+
+/* Seen this session: skip before hydration, no flash */
+html[data-intro-seen] .tunnel-intro {
+  display: none;
+}
+
+/* Locked while the intro covers the page; free again once the next hero lands */
+html:not([data-intro-seen]):has(.tunnel-intro:not([data-phase="landing"])) {
+  overflow: hidden;
+}
+
+.tunnel-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 60em;
+  font-size: clamp(7px, 1vw, 14px);
+  mask-image: radial-gradient(ellipse 30% 28% at 50% 50%, transparent 0, transparent 45%, #000 100%);
+  transition: opacity 0.4s ease;
+}
+
+.tunnel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  animation: tunnel-drift 10s ease-in-out infinite;
+  --drift: 14em;
+}
+
+.tunnel-card {
+  position: absolute;
+  left: -9em;
+  top: -5.6em;
+  width: 18em;
+  height: 11.25em;
+  border-radius: 0.7em;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(11, 19, 38, 0.12), 0 2em 4em rgba(11, 19, 38, 0.18);
+  transform: var(--tf);
+}
+
+.dark .tunnel-card {
+  box-shadow: 0 0 0 1px rgba(218, 226, 253, 0.16), 0 2em 4em rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile app card: portrait phone with a bezel and notch */
+.tunnel-phone {
+  left: -4.3em;
+  top: -8.7em;
+  width: 8.6em;
+  height: 17.4em;
+  border: 0.5em solid #0b0f19;
+  border-radius: 1.5em;
+  background: #0b0f19;
+}
+
+.tunnel-phone img {
+  border-radius: 1em;
+}
+
+.tunnel-phone-notch {
+  position: absolute;
+  left: 50%;
+  top: 0.35em;
+  z-index: 1;
+  width: 2.6em;
+  height: 0.65em;
+  border-radius: 999px;
+  background: #0b0f19;
+  transform: translateX(-50%);
+}
+
+.tunnel-intro:is([data-phase="flying"], [data-phase="landing"]) .tunnel-card {
+  transform: var(--fly);
+  opacity: 0 !important;
+}
+
+.tunnel-name {
+  transition: transform 1s cubic-bezier(0.6, 0, 0.9, 0.5), opacity 0.7s ease 0.25s, filter 0.7s ease;
+}
+
+.tunnel-intro:is([data-phase="flying"], [data-phase="landing"]) .tunnel-name {
+  transform: scale(5);
+  opacity: 0;
+  filter: blur(12px);
+}
+
+.tunnel-hint {
+  transition: opacity 0.3s ease;
+}
+
+.tunnel-intro:is([data-phase="flying"], [data-phase="landing"]) .tunnel-hint {
+  opacity: 0;
+}
+
+/* As in the design: the stage stays visible through the fly-through; the next hero
+   then fades in under the last cards while the stage fades out */
+.tunnel-intro[data-phase="landing"] {
+  background: transparent;
+  pointer-events: none;
+}
+
+.tunnel-intro[data-phase="landing"] .tunnel-stage {
+  opacity: 0;
+  transition: opacity 0.5s ease 0.6s;
+}
+
+.tunnel-blur-in {
+  display: inline-block;
+  opacity: 0;
+  animation: tunnel-blur-in 0.7s ease-out forwards;
+}
+
+.tunnel-bob {
+  animation: tunnel-bob 1.6s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .tunnel-stage {
+    font-size: 10px;
+    mask-image: radial-gradient(ellipse 50% 14% at 50% 50%, transparent 0, transparent 45%, #000 100%);
+  }
+
+  .tunnel {
+    --drift: 12em;
+  }
+
+  .tunnel-card {
+    transform: var(--tf-m);
+  }
+
+  .tunnel-intro:is([data-phase="flying"], [data-phase="landing"]) .tunnel-card {
+    transform: var(--fly-m);
+  }
+}
+
+@keyframes tunnel-drift {
+  0%,
+  100% {
+    transform: translateZ(0) rotateZ(0);
+  }
+
+  50% {
+    transform: translateZ(var(--drift)) rotateZ(4deg);
+  }
+}
+
+@keyframes tunnel-bob {
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes tunnel-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+/* IntroSection lands after the tunnel */
+.intro-land {
+  opacity: 0;
+  transform: scale(1.08);
+}
+
+html.intro-landed .intro-land {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s ease, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html[data-intro-seen] .intro-land {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stack marquee */
+.stack-marquee {
+  animation: stack-marquee 28s linear infinite;
+}
+
+@keyframes stack-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* The tunnel intro always animates (owner's call); the rest still respects reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .stack-marquee {
+    animation: none;
+  }
+}
