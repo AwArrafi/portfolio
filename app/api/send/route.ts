@@ -1,12 +1,19 @@
 import { EmailTemplate } from "@/components/email-template";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // shortcut: in-memory, so each serverless instance counts separately; move to Upstash/KV if spam gets through
 const RATE_LIMIT = 3;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const recentRequests = new Map<string, number[]>();
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const fail = (error: string, status = 400) =>
+  Response.json({ error }, { status });
+
+// Honeypot hits get this too, so bots don't retry
+const sent = () =>
+  Response.json({ success: true, message: "Email sent successfully." });
 
 function isRateLimited(ip: string) {
   const now = Date.now();
@@ -42,132 +49,50 @@ export async function POST(request: Request) {
       "unknown";
 
     if (isRateLimited(ip)) {
-      return Response.json(
-        {
-          error: "Too many messages. Please try again in a few minutes.",
-        },
-        {
-          status: 429,
-        },
-      );
+      return fail("Too many messages. Please try again in a few minutes.", 429);
     }
 
-    const body = await request.json();
+    const { name, email, message, website } = await request.json();
 
-    const { name, email, message, website } = body;
+    if (typeof website === "string" && website.trim() !== "") return sent();
 
-    // Honeypot filled: pretend success so bots don't retry
-    if (typeof website === "string" && website.trim() !== "") {
-      return Response.json(
-        {
-          success: true,
-          message: "Email sent successfully.",
-        },
-        {
-          status: 200,
-        },
-      );
-    }
-
-    // Make sure all values are strings
     if (
       typeof name !== "string" ||
       typeof email !== "string" ||
       typeof message !== "string"
     ) {
-      return Response.json(
-        {
-          error: "Invalid request data.",
-        },
-        {
-          status: 400,
-        },
-      );
+      return fail("Invalid request data.");
     }
 
-    // Remove unnecessary whitespace
     const cleanName = name.trim();
     const cleanEmail = email.trim();
     const cleanMessage = message.trim();
 
-    // Required validation
     if (!cleanName || !cleanEmail || !cleanMessage) {
-      return Response.json(
-        {
-          error: "All fields are required.",
-        },
-        {
-          status: 400,
-        },
-      );
+      return fail("All fields are required.");
     }
-
-    // Name length validation
     if (cleanName.length > 100) {
-      return Response.json(
-        {
-          error: "Name must be 100 characters or less.",
-        },
-        {
-          status: 400,
-        },
-      );
+      return fail("Name must be 100 characters or less.");
     }
-
-    // Email length validation
     if (cleanEmail.length > 254) {
-      return Response.json(
-        {
-          error: "Email must be 254 characters or less.",
-        },
-        {
-          status: 400,
-        },
-      );
+      return fail("Email must be 254 characters or less.");
     }
-
-    // Message length validation
     if (cleanMessage.length > 2000) {
-      return Response.json(
-        {
-          error: "Message must be 2000 characters or less.",
-        },
-        {
-          status: 400,
-        },
-      );
+      return fail("Message must be 2000 characters or less.");
     }
-
-    // Email format validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!emailPattern.test(cleanEmail)) {
-      return Response.json(
-        {
-          error: "Please enter a valid email address.",
-        },
-        {
-          status: 400,
-        },
-      );
+      return fail("Please enter a valid email address.");
     }
 
-    // Check Resend API key
+    // Checked before creating the client: `new Resend()` throws without a key
     if (!process.env.RESEND_API_KEY) {
       console.error("RESEND_API_KEY is missing.");
-
-      return Response.json(
-        {
-          error: "Email service is not configured.",
-        },
-        {
-          status: 500,
-        },
-      );
+      return fail("Email service is not configured.", 500);
     }
 
-    // Send email
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await new Resend(
+      process.env.RESEND_API_KEY,
+    ).emails.send({
       // Set RESEND_FROM (e.g. "Portfolio <hello@yourdomain.com>") once a domain is verified in Resend
       from: process.env.RESEND_FROM ?? "Portfolio <onboarding@resend.dev>",
       to: ["arrafiandroid@gmail.com"],
@@ -182,38 +107,13 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error("RESEND ERROR:", error);
-
-      return Response.json(
-        {
-          error: "Failed to send email.",
-        },
-        {
-          status: 500,
-        },
-      );
+      return fail("Failed to send email.", 500);
     }
 
     console.log("EMAIL SENT:", data);
-
-    return Response.json(
-      {
-        success: true,
-        message: "Email sent successfully.",
-      },
-      {
-        status: 200,
-      },
-    );
+    return sent();
   } catch (error) {
     console.error("SERVER ERROR:", error);
-
-    return Response.json(
-      {
-        error: "Something went wrong on the server.",
-      },
-      {
-        status: 500,
-      },
-    );
+    return fail("Something went wrong on the server.", 500);
   }
 }

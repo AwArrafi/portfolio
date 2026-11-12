@@ -101,7 +101,7 @@ export default function ProfileShowcaseSection() {
             alt="Portrait of Awang"
             width={1045}
             height={1567}
-            priority
+            sizes="(min-width: 1024px) 480px, 405px"
             className="relative z-10 -mt-20 h-[38rem] w-auto sm:mt-0 sm:h-140 lg:h-180 object-contain drop-shadow-[0_25px_35px_rgba(15,23,42,0.15)] transition duration-500 hover:-translate-y-2 dark:drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)]"
           />
 

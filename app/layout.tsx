@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -52,6 +52,11 @@ export const metadata: Metadata = {
     title,
     description,
   },
+};
+
+// Fill the notch/side areas in phone landscape (body pads content back out of them in globals.css)
+export const viewport: Viewport = {
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

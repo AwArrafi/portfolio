@@ -94,7 +94,7 @@ export default function IntroSection() {
                 src="/images/profile-professional.png"
                 alt="Awang Arrafi"
                 fill
-                priority
+                preload
                 sizes="150px"
                 className={`object-cover transition-all duration-700 ${
                   isProfessional ? "opacity-100" : "scale-105 opacity-0"
